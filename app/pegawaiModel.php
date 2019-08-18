@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class pegawaiModel extends Model
-{
+{  
 	protected $table = "pegawai";
 	public $timestamps = false;
 

@@ -13,22 +13,31 @@ $('#filters').change(function(){
         dataType: 'html'
     }).done(function(data){
         let datas = $(data).find('#content').html();
-        // console.log("TCL: datas", datas);
         $('#content').html(datas);
     });
 });
 
-function goTo(page){
+function goTo(pages){
     const urls=()=>{
         let search = $('#filters').find("input[name=search]").val();
         let status = $('#filters').find("select[name=status]").children("option:selected").val();
         let perPage = $('#filters').find("select[name=perPage]").children("option:selected").val();
         let sortBy = $('#filters').find("select[name=sortBy]").children("option:selected").val();
+        sortBy = (sortBy == "") ? "ASC":sortBy;
+
         return '?query='+search+'&status='+status+'&perPage='+perPage+'&sortBy='+sortBy;
     };
     let url = urls();
-    let tmp = $(page).attr('href');
-    console.log(url)
+    let page = $(pages).attr('href').slice(-1);
+    // console.log("TCL: goTo -> page", page)
+    $.ajax({
+        url: url+'&page='+page,
+        type: 'GET',
+        dataType: 'html'
+    }).done(function(data){
+        let datas = $(data).find('#content').html();
+        $('#content').html(datas);
+    });
 }
 
 function statusChange(attr,id){
@@ -44,18 +53,18 @@ function statusChange(attr,id){
 }
 
 
-function getDatas(page) {
-    $.ajax({
-        url : '?page=' + page,
-        type : "get",
-        dataType: 'json',
-        data:{
-            search: $('#search').val()
-        },
-    }).done(function (data) {
-        $('.datas').html(data);
-        location.hash = page;
-    }).fail(function (msg) {
-        alert('Gagal menampilkan data, silahkan refresh halaman.');
-    });
-}
+// function getDatas(page) {
+//     $.ajax({
+//         url : '?page=' + page,
+//         type : "get",
+//         dataType: 'json',
+//         data:{
+//             search: $('#search').val()
+//         },
+//     }).done(function (data) {
+//         $('.datas').html(data);
+//         location.hash = page;
+//     }).fail(function (msg) {
+//         alert('Gagal menampilkan data, silahkan refresh halaman.');
+//     });
+// }

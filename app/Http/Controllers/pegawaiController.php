@@ -28,9 +28,14 @@ class pegawaiController extends Controller
         if($req->has('status')) $status = $req->query('status');
         if($req->has('perPage')) $perPage = $req->query('perPage');
         $pegawai = pegawaiModel::cari($q)->status($status)->orderBy($orderBy,$sortBy)->paginate($perPage);
-        if($req->ajax()) return view('pegawai.index', ['pegawai' => $pegawai])->render();  
-        // $pegawai = pegawaiModel::cari($query)->orderBy($orderBy,$sortBy)->paginate($perPage);
         return view('pegawai.index',['pegawais'=>$pegawai]);
+        // if($req->ajax()) return view('pegawai.index', ['pegawai' => $pegawai])->render();  
+        // $result=[];
+        // foreach($pegawai as $row){
+        //     array_push($result,[$row->id,$row->name,$row->email,$row->job]);
+        // }
+        // print_r(json_encode($result,JSON_PRETTY_PRINT));
+        // exit();
     }
 
     /**
@@ -89,6 +94,7 @@ class pegawaiController extends Controller
         }
         $pegawai->save();
         return redirect('/pegawai')->with('success','Status Berhasil Diubah');
+        // return json_encode($pegawai,JSON_PRETTY_PRINT)."\n";
 
     }
 

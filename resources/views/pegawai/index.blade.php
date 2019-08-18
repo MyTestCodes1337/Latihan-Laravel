@@ -47,7 +47,16 @@
             </thead>
             <tbody>
                 @if (count($pegawais) > 0)
-                    @php ($no=1)
+                    @if (isset($_GET['page']) and $_GET['page'] != null)
+                        @if(isset($_GET['perPage']) and $_GET['perPage'] != null)
+                            @php ($no=1+(($_GET['page']-1)*$_GET['perPage']))
+                        @else
+                            @php ($no=1+(($_GET['page']-1)*20))
+                        @endif
+                    @else
+                        @php ($no=1)
+                    @endif
+                    
                     @foreach($pegawais as $pegawai)
                     <tr>
                         <td>{{$no}}</td>
@@ -90,8 +99,8 @@
                 @endif
             </tbody>
         </table>
-        {{ $pegawais->links() }}
-        {{-- {{ $pegawais->links('pagination.default-ajax') }} --}}
+        {{-- {{ $pegawais->links() }} --}}
+        {{ $pegawais->links('pagination.default-ajax') }}
     </div>
 </div>
 @endsection
