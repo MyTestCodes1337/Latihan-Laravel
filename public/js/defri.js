@@ -3,17 +3,33 @@ $('#filters').change(function(){
     let status = $('#filters').find("select[name=status]").children("option:selected").val();
     let perPage = $('#filters').find("select[name=perPage]").children("option:selected").val();
     let sortBy = $('#filters').find("select[name=sortBy]").children("option:selected").val();
+    
+    if(sortBy == ""){
+        sortBy = "ASC";
+    }
     $.ajax({
         url: '?query='+search+'&status='+status+'&perPage='+perPage+'&sortBy='+sortBy,
         type: 'GET',
         dataType: 'html'
     }).done(function(data){
         let datas = $(data).find('#content').html();
-        console.log("TCL: datas", datas);
+        // console.log("TCL: datas", datas);
         $('#content').html(datas);
     });
 });
 
+function goTo(page){
+    const urls=()=>{
+        let search = $('#filters').find("input[name=search]").val();
+        let status = $('#filters').find("select[name=status]").children("option:selected").val();
+        let perPage = $('#filters').find("select[name=perPage]").children("option:selected").val();
+        let sortBy = $('#filters').find("select[name=sortBy]").children("option:selected").val();
+        return '?query='+search+'&status='+status+'&perPage='+perPage+'&sortBy='+sortBy;
+    };
+    let url = urls();
+    let tmp = $(page).attr('href');
+    console.log(url)
+}
 
 function statusChange(attr,id){
     let statusTo = $(attr).val();

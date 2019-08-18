@@ -27,8 +27,8 @@ class pegawaiController extends Controller
         if($req->has('query')) $q = $req->query('query');
         if($req->has('status')) $status = $req->query('status');
         if($req->has('perPage')) $perPage = $req->query('perPage');
-
         $pegawai = pegawaiModel::cari($q)->status($status)->orderBy($orderBy,$sortBy)->paginate($perPage);
+        if($req->ajax()) return view('pegawai.index', ['pegawai' => $pegawai])->render();  
         // $pegawai = pegawaiModel::cari($query)->orderBy($orderBy,$sortBy)->paginate($perPage);
         return view('pegawai.index',['pegawais'=>$pegawai]);
     }

@@ -19,6 +19,9 @@ Route::resource('pegawai','pegawaiController');
 
 Route::get('/pegawai/change/{id}/{status}','pegawaiController@change')->name('pegawai.change');
 
+
+
+
 // Route::get('/vue',function(){
 // 	return view('vue.test');
 // });

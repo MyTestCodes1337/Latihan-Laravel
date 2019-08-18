@@ -32,9 +32,9 @@ class pegawaiModel extends Model
 		'email',
 		'job',
 		'status',
-		'created_at' => 'datetime',
-		'updated_at' => 'datetime',
 	];
 	protected $casts = [
+		'created_at' => 'datetime',
+		'updated_at' => 'datetime',
 	];
 }

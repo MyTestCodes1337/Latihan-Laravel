@@ -35,7 +35,7 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <td>ID</td>
+                    <td>No</td>
                     <td>Nama</td>
                     <td>Email</td>
                     <td>Pekerjaan</td>
@@ -47,9 +47,10 @@
             </thead>
             <tbody>
                 @if (count($pegawais) > 0)
+                    @php ($no=1)
                     @foreach($pegawais as $pegawai)
                     <tr>
-                        <td>{{$pegawai->id}}</td>
+                        <td>{{$no}}</td>
                         <td>{{$pegawai->name}}</td>
                         <td>{{$pegawai->email}}</td>
                         <td>{{$pegawai->job}}</td>
@@ -79,6 +80,7 @@
                             </form>
                         </td>
                     </tr>
+                    @php ($no++)
                     @endforeach
                 @else
                     <tr>
@@ -89,6 +91,7 @@
             </tbody>
         </table>
         {{ $pegawais->links() }}
+        {{-- {{ $pegawais->links('pagination.default-ajax') }} --}}
     </div>
 </div>
 @endsection
