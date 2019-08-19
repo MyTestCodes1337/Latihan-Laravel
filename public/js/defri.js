@@ -4,9 +4,8 @@ $('#filters').change(function(){
     let perPage = $('#filters').find("select[name=perPage]").children("option:selected").val();
     let sortBy = $('#filters').find("select[name=sortBy]").children("option:selected").val();
     
-    if(sortBy == ""){
-        sortBy = "ASC";
-    }
+    sortBy = (sortBy == "")?"ASC":sortBy;
+    perPage = (perPage == "") ? "20" : perPage;
     $.ajax({
         url: '?query='+search+'&status='+status+'&perPage='+perPage+'&sortBy='+sortBy,
         type: 'GET',
@@ -24,7 +23,7 @@ function goTo(pages){
         let perPage = $('#filters').find("select[name=perPage]").children("option:selected").val();
         let sortBy = $('#filters').find("select[name=sortBy]").children("option:selected").val();
         sortBy = (sortBy == "") ? "ASC":sortBy;
-
+        perPage = (perPage == "") ? "20" : perPage;
         return '?query='+search+'&status='+status+'&perPage='+perPage+'&sortBy='+sortBy;
     };
     let url = urls();
