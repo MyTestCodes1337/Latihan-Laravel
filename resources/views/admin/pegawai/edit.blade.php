@@ -21,7 +21,7 @@
       </div><br />
     @endif
       {!! Form::model( $pegawai, ['route' => ['pegawai.update', $pegawai->id], 'method' => 'put', 'role' => 'form'] ) !!}
-      @include('pegawai.form',['submitButtonText'=>'Add Data'])
+      @include('admin.pegawai.form',['submitButtonText'=>'Add Data'])
       {!! Form::close() !!}
   </div>
 </div>

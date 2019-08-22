@@ -3,10 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\pegawaiModel;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Schema;
+use App\Models\pegawaiModel;
+
 
 class pegawaiController extends Controller
 {
+
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('role:2');
+    }
+
 
     /**
      * Display a listing of the resource.
@@ -28,8 +39,8 @@ class pegawaiController extends Controller
         if($req->has('status')) $status = $req->query('status');
         if($req->has('perPage')) $perPage = $req->query('perPage');
         $pegawai = pegawaiModel::cari($q)->status($status)->orderBy($orderBy,$sortBy)->paginate($perPage);
-        return view('pegawai.index',['pegawais'=>$pegawai]);
-        // if($req->ajax()) return view('pegawai.index', ['pegawai' => $pegawai])->render();  
+        return view('admin.pegawai.index',['pegawais'=>$pegawai]);
+        // if($req->ajax()) return view('admin.pegawai.index', ['pegawai' => $pegawai])->render();  
         // $result=[];
         // foreach($pegawai as $row){
         //     array_push($result,[$row->id,$row->name,$row->email,$row->job]);
@@ -46,7 +57,7 @@ class pegawaiController extends Controller
     public function create()
     {
         //
-        return view('pegawai.create');
+        return view('admin.pegawai.create');
     }
 
     /**
@@ -119,7 +130,7 @@ class pegawaiController extends Controller
     {
         //
         $pegawai = pegawaiModel::findOrFail($id);
-        return view('pegawai.edit',['pegawai'=>$pegawai]);
+        return view('admin.pegawai.edit',['pegawai'=>$pegawai]);
     }
 
     /**
@@ -162,5 +173,19 @@ class pegawaiController extends Controller
         $pegawai = pegawaiModel::findOrFail($id);
         $pegawai->delete();
         return redirect('/pegawai')->with('success', 'Berhasil Menghapus Pegawai');
+    }
+
+    public function hash($password)
+    {
+        $hash = Hash::make($password);
+        print('<pre>'.$hash.'</pre>');
+        exit();
+    }
+    public function  schema($name){
+        $columns = Schema::getColumnListing($name); // 'business' is your database connection
+
+        echo "<pre>";
+        print_r($columns);
+        exit();
     }
 }

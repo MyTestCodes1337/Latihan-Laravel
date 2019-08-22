@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>CRUD Example Tutorial</title>
   <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" />
+  <link href="{{ asset('css/base.css') }}" rel="stylesheet" type="text/css" />
 </head>
 <body>
   <div class="container">
@@ -14,7 +15,7 @@
     @yield('content')
   </div>
   <script src="{{ asset('/js/jquery-3.4.1.min.js') }}"></script>
-  <script src="{{ asset('/js/defri.js') }}"></script>
+  <script src="{{ asset('/js/script.js') }}"></script>
   <script src="{{ asset('js/app.js') }}" type="text/js"></script>
 </body>
 </html>

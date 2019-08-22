@@ -21,7 +21,7 @@
       </div><br />
     @endif
       {!! Form::open(['action'=>'pegawaiController@store']) !!}
-      @include('pegawai.form',['submitButtonText'=>'Add Data'])
+      @include('admin.pegawai.form',['submitButtonText'=>'Add Data'])
       {!! Form::close() !!}
   </div>
 </div>

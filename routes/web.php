@@ -19,9 +19,14 @@ Route::resource('pegawai','pegawaiController');
 
 Route::get('/pegawai/change/{id}/{status}','pegawaiController@change')->name('pegawai.change');
 
+Route::get('/pegawai/hash/{password}','pegawaiController@hash')->name('pegawai.hash');
 
+Route::get('/pegawai/schema/{name}','pegawaiController@schema')->name('pegawai.schema');
 
 
 // Route::get('/vue',function(){
 // 	return view('vue.test');
 // });
+Auth::routes();
+
+Route::get('/home', 'homeController@index')->name('home');

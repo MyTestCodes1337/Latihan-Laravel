@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class {{ modelName }}Model extends Model
+{
+    // * Generator
+    
+    protected $table = "{{ modelNormalize }}";
+    protected $guarded = ['id'];
+
+    protected $fillable = [
+        modelable
+    ];
+
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at'=> 'datetime'
+    ];
+}
