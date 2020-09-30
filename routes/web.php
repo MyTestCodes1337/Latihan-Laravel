@@ -22,11 +22,11 @@ Route::get('/pegawai/change/{id}/{status}','pegawaiController@change')->name('pe
 Route::get('/pegawai/hash/{password}','pegawaiController@hash')->name('pegawai.hash');
 
 Route::get('/pegawai/schema/{name}','pegawaiController@schema')->name('pegawai.schema');
+Route::get('/pegawai/cookie/{val}','pegawaiController@cookie')->name('cookie_route');
 
-
-// Route::get('/vue',function(){
-// 	return view('vue.test');
-// });
+Route::get('/vue',function(){
+	return view('vue.test');
+});
 Auth::routes();
 
 Route::get('/home', 'homeController@index')->name('home');

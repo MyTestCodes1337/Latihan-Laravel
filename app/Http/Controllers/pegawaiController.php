@@ -181,6 +181,12 @@ class pegawaiController extends Controller
         print('<pre>'.$hash.'</pre>');
         exit();
     }
+    public function cookie($val){
+        $encrypter = app(\Illuminate\Contracts\Encryption\Encrypter::class);
+        $decryptedString = $encrypter->decrypt($val);
+        return $decryptedString;
+
+    }
     public function  schema($name){
         $columns = Schema::getColumnListing($name); // 'business' is your database connection
 

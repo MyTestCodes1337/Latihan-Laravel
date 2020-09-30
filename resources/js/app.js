@@ -19,10 +19,10 @@ import axios from 'axios';
 Vue.use(VueAxios, axios);
 
 
-import IndexComponent from './components/pegawai/IndexComponent';
-import CreateComponent from './components/pegawai/CreateComponent';
-import EditComponent from './components/pegawai/EditComponent';
-import ViewComponent from './components/pegawai/ViewComponent';
+// import IndexComponent from './components/pegawai/IndexComponent';
+// import CreateComponent from './components/pegawai/CreateComponent';
+// import EditComponent from './components/pegawai/EditComponent';
+// import ViewComponent from './components/pegawai/ViewComponent';
 
 /**
  * The following block of code may be used to automatically register your
@@ -35,30 +35,30 @@ import ViewComponent from './components/pegawai/ViewComponent';
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
-// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('index-component', require('./components/ExampleComponent.vue').default);
 
 // define routes for pegawais
-const routes = [
-{
-  path: '/',
-  name: 'pegawaiIndex',
-  component: IndexComponent
-},
-{
-  path: '/create',
-  name: 'pegawaiCreate',
-  component: CreateComponent
-},
-{
-  path: '/view/:id',
-  name: 'pegawaiView',
-  component: ViewComponent
-}
-]
-const router = new VueRouter({ routes });
-const app = new Vue({
-  router
-}).$mount('#app');
+// const routes = [
+// {
+//   path: '/',
+//   name: 'pegawaiIndex',
+//   component: IndexComponent
+// },
+// {
+//   path: '/create',
+//   name: 'pegawaiCreate',
+//   component: CreateComponent
+// },
+// {
+//   path: '/view/:id',
+//   name: 'pegawaiView',
+//   component: ViewComponent
+// }
+// ];
+// const router = new VueRouter({ routes });
+// const app = new Vue({
+//   router
+// }).$mount('#app');
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -66,6 +66,6 @@ const app = new Vue({
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-// const app = new Vue({
-//     el: '#app',
-// });
+const app = new Vue({
+    el: '#app',
+});
